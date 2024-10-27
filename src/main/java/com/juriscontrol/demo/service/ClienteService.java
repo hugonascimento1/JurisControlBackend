@@ -1,0 +1,102 @@
+package com.juriscontrol.demo.service;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.juriscontrol.demo.dto.ClienteDTO.AtualizarClienteDTO;
+import com.juriscontrol.demo.dto.ClienteDTO.ClienteResumoDTO;
+import com.juriscontrol.demo.dto.ClienteDTO.CriarClienteDTO;
+import com.juriscontrol.demo.dto.ClienteDTO.ListaClienteDTO;
+import com.juriscontrol.demo.exception.ClienteNotFoundException;
+import com.juriscontrol.demo.model.Cliente;
+import com.juriscontrol.demo.repository.ClienteRepository;
+
+@Service
+public class ClienteService {
+
+    @Autowired
+    private ClienteRepository clienteRepository;
+
+    public Cliente salvar(Cliente cliente) {
+        return clienteRepository.save(cliente);
+    }
+
+    public Cliente criarCliente(CriarClienteDTO dto) {
+        Cliente cliente = new Cliente();
+        cliente.setNome(dto.getNome());
+        cliente.setCpf(dto.getCpf());
+        cliente.setTelefone(dto.getTelefone());
+        cliente.setEndereco(dto.getEndereco());
+        
+        return clienteRepository.save(cliente);
+    }
+
+    public Cliente atualizarCliente(Long id, AtualizarClienteDTO dto) throws ClienteNotFoundException {
+        Optional<Cliente> opCliente = clienteRepository.findById(id);
+        if (opCliente.isPresent()) {
+            Cliente cliente = opCliente.get();
+            cliente.setNome(dto.getNome());
+            cliente.setTelefone(dto.getTelefone());
+            cliente.setEndereco(dto.getEndereco());
+            cliente.setTipo(dto.getTipo());
+
+            return clienteRepository.save(cliente);
+        }
+        throw new ClienteNotFoundException("cliente não encontrado.");
+    }
+
+    public ListaClienteDTO buscarPorIdCliente(Long id) throws ClienteNotFoundException {
+        Optional<Cliente> opCliente = clienteRepository.findById(id);
+        if (opCliente.isPresent()) {
+            Cliente cliente = opCliente.get();
+            return new ListaClienteDTO(
+                cliente.getId(),
+                cliente.getNome(),
+                cliente.getCpf(),
+                cliente.getTelefone(),
+                cliente.getEndereco(),
+                cliente.getTipo()
+            );    
+        }
+        throw new ClienteNotFoundException("Cliente não encontrado");
+    }
+
+    public List<ListaClienteDTO> buscarTodosClientes() {
+        return clienteRepository.findAll().stream().map(cliente -> new ListaClienteDTO(
+            cliente.getId(),
+            cliente.getNome(),
+            cliente.getCpf(),
+            cliente.getTipo(),
+            cliente.getEndereco(),
+            cliente.getTelefone()
+        ))
+        .collect(Collectors.toList());
+    }
+
+    public ClienteResumoDTO buscarClienteResumoPorId(Long id) throws ClienteNotFoundException {
+        Optional<Cliente> opCliente = clienteRepository.findById(id);
+        if (opCliente.isPresent()) {
+            Cliente cliente = opCliente.get();
+            return new ClienteResumoDTO(
+                cliente.getId(),
+                cliente.getNome(),
+                cliente.getCpf()
+            );
+        }
+        throw new ClienteNotFoundException("Cliente não encontrado!");
+    }
+
+    public void deletarCliente(Long id) throws ClienteNotFoundException {
+        Optional<Cliente> opCliente = clienteRepository.findById(id);
+        if (opCliente.isPresent()) {
+            clienteRepository.delete(opCliente.get());
+        } else {
+            throw new ClienteNotFoundException("Cliente não encontrado");
+        }
+    }
+
+}
