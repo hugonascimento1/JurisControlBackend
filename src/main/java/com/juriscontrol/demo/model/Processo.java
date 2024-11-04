@@ -1,4 +1,4 @@
-package com.juriscontrol.demo.model;
+package main.java.com.juriscontrol.demo.model;
 
 import java.time.LocalDateTime;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.juriscontrol.demo.controller;
+package main.java.com.juriscontrol.demo.controller;
 
 import java.util.List;
 
@@ -80,6 +80,4 @@ public class ProcessoController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
-
 }

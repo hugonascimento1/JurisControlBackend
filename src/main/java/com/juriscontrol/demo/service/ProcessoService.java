@@ -1,4 +1,4 @@
-package com.juriscontrol.demo.service;
+package main.java.com.juriscontrol.demo.service;
 
 import java.util.Collections;
 import java.util.List;
