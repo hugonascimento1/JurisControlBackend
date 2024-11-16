@@ -1,4 +1,4 @@
-package main.java.com.juriscontrol.demo.controller;
+package com.juriscontrol.demo.controller;
 
 import java.util.List;
 

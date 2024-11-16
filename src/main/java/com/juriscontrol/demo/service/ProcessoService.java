@@ -1,4 +1,4 @@
-package main.java.com.juriscontrol.demo.service;
+package com.juriscontrol.demo.service;
 
 import java.util.Collections;
 import java.util.List;
@@ -19,6 +19,7 @@ import com.juriscontrol.demo.dto.ClienteDTO.ListaClienteDTO;
 import com.juriscontrol.demo.dto.ProcessoDTO.AtualizarProcessoDTO;
 import com.juriscontrol.demo.dto.ProcessoDTO.CriarProcessoDTO;
 import com.juriscontrol.demo.dto.ProcessoDTO.ListaTudoProcessoDTO;
+import com.juriscontrol.demo.dto.RegistroDeInfoDTO.ExibirRegistroDeInfoDTO;
 import com.juriscontrol.demo.exception.AdvogadoNotFoundException;
 import com.juriscontrol.demo.exception.ClienteNotFoundException;
 import com.juriscontrol.demo.exception.ProcessoNotFoundException;
@@ -144,7 +145,13 @@ public class ProcessoService {
                         audiencia.getDataHora(),
                         audiencia.getLocal()
                     ))
-                    .collect(Collectors.toList()) : Collections.emptyList() // Retorna lista vazia se nula
+                    .collect(Collectors.toList()) : Collections.emptyList(), // Retorna lista vazia se nula
+                processo.getRegistrosDeInfo() != null ? processo.getRegistrosDeInfo().stream()
+                    .map(registroDeInfo -> new ExibirRegistroDeInfoDTO(
+                        registroDeInfo.getData(),
+                        registroDeInfo.getDescricao()
+                    ))
+                    .collect(Collectors.toList()) : Collections.emptyList()    
             ))
             .collect(Collectors.toList());
     }
@@ -192,7 +199,13 @@ public class ProcessoService {
                         audiencia.getDataHora(),
                         audiencia.getLocal()
                     ))
-                    .collect(Collectors.toList()) : Collections.emptyList() // Retorna lista vazia se nula
+                    .collect(Collectors.toList()) : Collections.emptyList(), // Retorna lista vazia se nula
+                processo.getRegistrosDeInfo() != null ? processo.getRegistrosDeInfo().stream()
+                    .map(registroDeInfo -> new ExibirRegistroDeInfoDTO(
+                        registroDeInfo.getData(),
+                        registroDeInfo.getDescricao()
+                    ))
+                    .collect(Collectors.toList()) : Collections.emptyList()    
             );
         }
         throw new ProcessoNotFoundException("Processo não encontrado");

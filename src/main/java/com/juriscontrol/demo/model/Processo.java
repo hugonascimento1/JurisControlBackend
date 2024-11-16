@@ -1,4 +1,4 @@
-package main.java.com.juriscontrol.demo.model;
+package com.juriscontrol.demo.model;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -63,5 +63,9 @@ public class Processo {
     @JsonIgnore
     @OneToMany(mappedBy = "processo")
     private List<Audiencia> audiencias;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "processo")
+    private List<RegistroDeInfo> registrosDeInfo;
 
 }

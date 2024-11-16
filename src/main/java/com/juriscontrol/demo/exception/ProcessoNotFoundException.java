@@ -1,4 +1,4 @@
-package main.java.com.juriscontrol.demo.exception;
+package com.juriscontrol.demo.exception;
 
 public class ProcessoNotFoundException extends Exception {
     public ProcessoNotFoundException(String message) {

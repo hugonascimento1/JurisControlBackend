@@ -1,4 +1,6 @@
-package com.juriscontrol.demo.dto.ProcessoDTO;
+package com.juriscontrol.demo.dto.RegistroDeInfoDTO;
+
+import java.time.LocalDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,12 +11,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class AtualizarProcessoDTO {
+public class ExibirRegistroDeInfoDTO {
     
+    private LocalDate data;
     private String descricao;
-    private String status;
-    private String tipo;
-    private Long advogadoAutorId;
-    private Long adovgadoReuId;
 
 }

@@ -1,4 +1,4 @@
-package main.java.com.juriscontrol.demo.dto.ProcessoDTO;
+package com.juriscontrol.demo.dto.ProcessoDTO;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -7,6 +7,7 @@ import com.juriscontrol.demo.dto.AdvogadoDTO.ListaAdvogadoDTO;
 import com.juriscontrol.demo.dto.AudienciaDTO.ListaAudienciaDTO;
 import com.juriscontrol.demo.dto.ClienteDTO.CriarClienteDTO;
 import com.juriscontrol.demo.dto.ClienteDTO.ListaClienteDTO;
+import com.juriscontrol.demo.dto.RegistroDeInfoDTO.ExibirRegistroDeInfoDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,4 +31,5 @@ public class ListaTudoProcessoDTO {
     private ListaClienteDTO autor;
     private ListaClienteDTO reu;
     private List<ListaAudienciaDTO> audiencias;
+    private List<ExibirRegistroDeInfoDTO> registrosDeInfo;
 }
