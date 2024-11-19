@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.juriscontrol.demo.dto.AdvogadoDTO.AtualizarAdvogadoDTO;
 import com.juriscontrol.demo.dto.AdvogadoDTO.CriarAdvogadoDTO;
-import com.juriscontrol.demo.dto.AdvogadoDTO.ListaAdvogadoDTO;
+// import com.juriscontrol.demo.dto.AdvogadoDTO.ListaAdvogadoDTO;
 import com.juriscontrol.demo.dto.AdvogadoDTO.ListaTudoAdvogadoDTO;
 import com.juriscontrol.demo.exception.AdvogadoNotFoundException;
 import com.juriscontrol.demo.model.Advogado;

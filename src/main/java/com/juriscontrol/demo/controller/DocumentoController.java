@@ -1,68 +1,72 @@
-package main.java.com.juriscontrol.demo.controller;
+package com.juriscontrol.demo.controller;
 
-import com.juriscontrol.demo.dto.DocumentosDTO.CriarDocumentoDTO;
-import com.juriscontrol.demo.dto.AdministradorDTO.AtualizarAdministradorDTO;
-import com.juriscontrol.demo.model.Documentos;
-import com.juriscontrol.demo.service.DocumentosService;
+import com.juriscontrol.demo.dto.DocumentoDTO.CriarDocumentoDTO;
+// import com.juriscontrol.demo.dto.AdministradorDTO.AtualizarAdministradorDTO;
+import com.juriscontrol.demo.model.Documento;
+import com.juriscontrol.demo.service.DocumentoService;
+import com.juriscontrol.demo.dto.DocumentoDTO.ListaDocumentoDTO;
+// import com.juriscontrol.demo.dto.DocumentoDTO.ListaTodosDocumentosDTO;
+import com.juriscontrol.demo.exception.DocumentoNotFoundException;
+import com.juriscontrol.demo.dto.DocumentoDTO.AtualizarDocumentoDTO;
 
-import main.java.com.juriscontrol.demo.dto.DocumentosDTO.ListaDocumentoDTO;
-import main.java.com.juriscontrol.demo.dto.DocumentosDTO.ListaTodosDocumentosDTO;
-import main.java.com.juriscontrol.demo.exception.DocumentoNotFoundException;
-
-import java.io.IOException;
-import java.net.http.HttpHeaders;
+// import java.io.IOException;
+// import java.net.http.HttpHeaders;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
-@RestMapping("/documentos")
+@RequestMapping("/documentos")
 public class DocumentoController {
 	
 	@Autowired
-	private DocumentoService documentosService;
-
-	@Autowired
-	private ProcessoService processosService;
+	private DocumentoService documentoService;
 
 	@PostMapping("/add")
-	public ResponseEntity<Documentos> inserirDocumento(@ModelAttribute CriarDocumentoDTO docsDTO, @PathVariable Long id) {
+	public ResponseEntity<Documento> criarDocumento(@ModelAttribute CriarDocumentoDTO docsDTO, @PathVariable Long id) {
 		try {
-			Documentos docs = documentoService.salvarDocumento(docsDTO, docsDTO.getAnexo());
-			return new ResponseEntity<>(docs, HttpStatus.CREATED);
-		} catch(IOException ioException) {
+			Documento documento = documentoService.criarDocumento(docsDTO);
+
+			return new ResponseEntity<>(documento, HttpStatus.CREATED);
+		} catch(Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Documentos> buscarDocumentoPorId(@PathVariable Long id, @RequestBody ListaDocumentoDTO docsDTO) {
+	public ResponseEntity<ListaDocumentoDTO> buscarDocumentoPorId(@PathVariable Long id) {
 		try {
-			ListaDocumentoDTO documento = documentosService.buscarDocumento(id);
-			return new ResponseEntity<>(documento, HttpStatus.OK);
-		} catch(DocumentoNotFoundException docsException) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			ListaDocumentoDTO documentoDTO = documentoService.buscarDocumento(id);
+			return ResponseEntity.ok(documentoDTO);
+		} catch(DocumentoNotFoundException e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 		}
 	}
 
 	@GetMapping("/all")
-	public ResponseEntity<List<ListaTodosDocumentosDTO>> buscarTodosDocumentos() {
-		List<ListaTodosDocumentosDTO> documentos = documentosService.buscarTodosDocumentos();
-		return new ResponseEntity<>(documentoDTO, HttpStatus.OK);
+	public ResponseEntity<List<ListaDocumentoDTO>> buscarTodosDocumentos() {
+		List<ListaDocumentoDTO> documentos = documentoService.buscarTodosDocumentos();
+		return ResponseEntity.ok(documentos);
 	}
 
-	@PutMapping("/update")
-	public ResponseEntity<Documentos> atualizarDocumento(@RequestBody AtualizarDocumentosDTO dto, @PathVariable Long id) {
+	@PutMapping("/{id}")
+	public ResponseEntity<Documento> atualizarDocumento(@PathVariable Long id, @RequestBody AtualizarDocumentoDTO dto) {
 		try {
-			Documento documentoAtualizado = documentosService.atualizarDocumento(dto, null, id);
+			Documento documentoAtualizado = documentoService.atualizarDocumento(id, dto);
+			// Documento documentoAtualizado = documentoService.atualizarDocumento(dto, null, id);
 			return new ResponseEntity<>(documentoAtualizado, HttpStatus.OK);
-		} catch(DocumentoNotFoundException docsException) {
+		} catch(Exception e) {
 			return new ResponseEntity(HttpStatus.NOT_FOUND);
 		}
 	}
@@ -70,7 +74,7 @@ public class DocumentoController {
 	@DeleteMapping("/delete")
 	public ResponseEntity<Void> deletarDocumento(@PathVariable Long id) {
 		try{
-			documentosService.deletarDocumento(id);
+			documentoService.deletarDocumento(id);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} catch(DocumentoNotFoundException docsException) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

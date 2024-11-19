@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.juriscontrol.demo.dto.ProcessoDTO.AtualizarProcessoDTO;
 import com.juriscontrol.demo.dto.ProcessoDTO.CriarProcessoDTO;
-import com.juriscontrol.demo.dto.ProcessoDTO.ListaProcessoDTO;
+// import com.juriscontrol.demo.dto.ProcessoDTO.ListaProcessoDTO;
 import com.juriscontrol.demo.dto.ProcessoDTO.ListaTudoProcessoDTO;
 import com.juriscontrol.demo.exception.AdvogadoNotFoundException;
 import com.juriscontrol.demo.exception.ClienteNotFoundException;

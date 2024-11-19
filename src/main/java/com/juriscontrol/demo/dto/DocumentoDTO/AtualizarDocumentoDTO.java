@@ -1,4 +1,6 @@
-package main.java.com.juriscontrol.demo.dto.DocumentoDTO;
+package com.juriscontrol.demo.dto.DocumentoDTO;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,10 +9,10 @@ import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getters
-@Setters
+@Getter
+@Setter
 public class AtualizarDocumentoDTO {
     private String titulo;
-	private String tipoDoc;
-	private Multipartfile anexo; //private byte[] anexo;
+	private String tipoDocumento;
+	private MultipartFile anexo; //private byte[] anexo;
 }

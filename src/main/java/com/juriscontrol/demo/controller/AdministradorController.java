@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.juriscontrol.demo.dto.AdministradorDTO.AtualizarAdministradorDTO;
 import com.juriscontrol.demo.dto.AdministradorDTO.CriarAdministradorDTO;
-import com.juriscontrol.demo.dto.AdministradorDTO.ListaAdministradorDTO;
+// import com.juriscontrol.demo.dto.AdministradorDTO.ListaAdministradorDTO;
 import com.juriscontrol.demo.dto.AdministradorDTO.ListaTudoAdministradorDTO;
 import com.juriscontrol.demo.exception.AdministradorNotFoundException;
 import com.juriscontrol.demo.model.Administrador;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+// import org.springframework.web.bind.annotation.RequestParam;
 
 
 

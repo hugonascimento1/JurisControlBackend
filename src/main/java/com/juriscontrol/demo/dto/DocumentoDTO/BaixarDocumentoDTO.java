@@ -1,4 +1,4 @@
-package main.java.com.juriscontrol.demo.dto.DocumentoDTO;
+package com.juriscontrol.demo.dto.DocumentoDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.juriscontrol.demo.dto.AudienciaDTO.AtualizarAudienciaDTO;
 import com.juriscontrol.demo.dto.AudienciaDTO.CriarAudienciaDTO;
-import com.juriscontrol.demo.dto.AudienciaDTO.ListaAudienciaDTO;
+// import com.juriscontrol.demo.dto.AudienciaDTO.ListaAudienciaDTO;
 import com.juriscontrol.demo.dto.AudienciaDTO.ListaTudoAudienciaDTO;
 import com.juriscontrol.demo.dto.ProcessoDTO.ListaTudoProcessoDTO;
 import com.juriscontrol.demo.exception.AudienciaNotFoundException;
@@ -23,11 +23,11 @@ import com.juriscontrol.demo.service.ProcessoService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.ErrorResponse;
+// import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+// import org.springframework.web.bind.annotation.RequestParam;
 
 
 

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.juriscontrol.demo.dto.AudienciaDTO.AtualizarAudienciaDTO;
 import com.juriscontrol.demo.dto.AudienciaDTO.CriarAudienciaDTO;
-import com.juriscontrol.demo.dto.AudienciaDTO.ListaAudienciaDTO;
+// import com.juriscontrol.demo.dto.AudienciaDTO.ListaAudienciaDTO;
 import com.juriscontrol.demo.dto.AudienciaDTO.ListaTudoAudienciaDTO;
 import com.juriscontrol.demo.exception.AudienciaNotFoundException;
 import com.juriscontrol.demo.exception.ProcessoNotFoundException;
@@ -17,7 +17,7 @@ import com.juriscontrol.demo.model.Audiencia;
 import com.juriscontrol.demo.model.Processo;
 import com.juriscontrol.demo.repository.AudienciaRepository;
 import com.juriscontrol.demo.repository.ProcessoRepository;
-import com.juriscontrol.demo.exception.ProcessoNotFoundException;;
+// import com.juriscontrol.demo.exception.ProcessoNotFoundException;;
 
 @Service
 public class AudienciaService {

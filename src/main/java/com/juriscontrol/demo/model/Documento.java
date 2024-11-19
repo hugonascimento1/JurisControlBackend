@@ -7,10 +7,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
-// import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 // import lombok.NonNull;
 import lombok.Setter;
 
@@ -26,8 +26,10 @@ public class Documento {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@NonNull
 	private String titulo;
 
+	@NonNull
 	private String tipoDocumento;
 	
 	@Lob
@@ -35,5 +37,5 @@ public class Documento {
 	
 	@ManyToOne
 	@JoinColumn(name = "processos_id")
-	private Processo processos;
+	private Processo processo;
 }
