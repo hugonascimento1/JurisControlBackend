@@ -12,6 +12,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CriarDocumentoDTO {
+	
 	private String titulo;
 	private String tipoDocumento;
 	private MultipartFile anexo;

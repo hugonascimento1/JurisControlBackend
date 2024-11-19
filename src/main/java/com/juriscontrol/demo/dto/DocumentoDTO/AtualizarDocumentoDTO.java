@@ -12,7 +12,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AtualizarDocumentoDTO {
+	
     private String titulo;
 	private String tipoDocumento;
-	private MultipartFile anexo; //private byte[] anexo;
+	private MultipartFile anexo;
 }

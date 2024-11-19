@@ -7,9 +7,10 @@ import com.juriscontrol.demo.service.DocumentoService;
 import com.juriscontrol.demo.dto.DocumentoDTO.ListaDocumentoDTO;
 // import com.juriscontrol.demo.dto.DocumentoDTO.ListaTodosDocumentosDTO;
 import com.juriscontrol.demo.exception.DocumentoNotFoundException;
+import com.juriscontrol.demo.exception.ProcessoNotFoundException;
 import com.juriscontrol.demo.dto.DocumentoDTO.AtualizarDocumentoDTO;
 
-// import java.io.IOException;
+import java.io.IOException;
 // import java.net.http.HttpHeaders;
 import java.util.List;
 
@@ -34,12 +35,11 @@ public class DocumentoController {
 	private DocumentoService documentoService;
 
 	@PostMapping("/add")
-	public ResponseEntity<Documento> criarDocumento(@ModelAttribute CriarDocumentoDTO docsDTO, @PathVariable Long id) {
+	public ResponseEntity<Documento> criarDocumento(@ModelAttribute CriarDocumentoDTO docsDTO, @PathVariable Long id) throws IOException {
 		try {
 			Documento documento = documentoService.criarDocumento(docsDTO);
-
 			return new ResponseEntity<>(documento, HttpStatus.CREATED);
-		} catch(Exception e) {
+		} catch(ProcessoNotFoundException e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
 	}
@@ -64,10 +64,9 @@ public class DocumentoController {
 	public ResponseEntity<Documento> atualizarDocumento(@PathVariable Long id, @RequestBody AtualizarDocumentoDTO dto) {
 		try {
 			Documento documentoAtualizado = documentoService.atualizarDocumento(id, dto);
-			// Documento documentoAtualizado = documentoService.atualizarDocumento(dto, null, id);
 			return new ResponseEntity<>(documentoAtualizado, HttpStatus.OK);
 		} catch(Exception e) {
-			return new ResponseEntity(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 

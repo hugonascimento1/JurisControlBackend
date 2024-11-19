@@ -11,7 +11,8 @@ import lombok.Setter;
 @Setter
 public class ListaTodosDocumentosDTO {
     
+    private Long id;
     private String titulo;
-    private byte[] anexo;
-    private Long processoId;
+	private String tipoDocumento;
+	private byte[] anexo;
 }

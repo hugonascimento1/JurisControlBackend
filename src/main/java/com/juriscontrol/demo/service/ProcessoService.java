@@ -97,6 +97,7 @@ public class ProcessoService {
             processo.setTipo(dto.getTipo());
             // processo.getAdvogadoAutor(dto.getAdvogadoAutorId());
             // processo.getAdovgadoReu(dto.getAdovgadoReuId());
+            // processo.getDocumento(dto.getAnexo());
             return processoRepository.save(processo);
         }
         throw new ProcessoNotFoundException("Processo não encontrado.");
@@ -151,13 +152,20 @@ public class ProcessoService {
                         registroDeInfo.getData(),
                         registroDeInfo.getDescricao()
                     ))
-                    .collect(Collectors.toList()) : Collections.emptyList()    
+                    .collect(Collectors.toList()) : Collections.emptyList()/*,   
+                processo.getDocumentos() != null ? processo.getDocumentos().stream()
+                    .map(documento -> new ListaDocumentoDTO(
+                        documento.getTitulo(),
+                        documentoo.getAnexo()
+                    ))
+                    .collect(Collectors.toList()) : Collections.emptyList()*/
             ))
             .collect(Collectors.toList());
     }
     
     public ListaTudoProcessoDTO buscarProcessoPorId(Long id) throws ProcessoNotFoundException {
         Optional<Processo> opProcesso = processoRepository.findById(id);
+
         if (opProcesso.isPresent()) {
             Processo processo = opProcesso.get();
             return new ListaTudoProcessoDTO(
@@ -205,7 +213,13 @@ public class ProcessoService {
                         registroDeInfo.getData(),
                         registroDeInfo.getDescricao()
                     ))
-                    .collect(Collectors.toList()) : Collections.emptyList()    
+                    .collect(Collectors.toList()) : Collections.emptyList()/*,   
+                processo.getDocumentos() != null ? processo.getDocumentos().stream()
+                    .map(documento -> new ListaDocumentoDTO(
+                        documento.getTitulo(),
+                        documentoo.getAnexo()
+                    ))
+                    .collect(Collectors.toList()) : Collections.emptyList()*/    
             );
         }
         throw new ProcessoNotFoundException("Processo não encontrado");

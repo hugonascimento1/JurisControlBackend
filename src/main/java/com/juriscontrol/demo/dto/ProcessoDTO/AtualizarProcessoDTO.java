@@ -14,6 +14,7 @@ public class AtualizarProcessoDTO {
     private String descricao;
     private String status;
     private String tipo;
+    // private AtualizarDocumentoDTO anexo;
     private Long advogadoAutorId;
     private Long adovgadoReuId;
 
