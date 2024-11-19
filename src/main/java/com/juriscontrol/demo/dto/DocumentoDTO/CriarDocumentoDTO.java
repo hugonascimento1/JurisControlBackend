@@ -1,5 +1,7 @@
 package com.juriscontrol.demo.dto.DocumentoDTO;
 
+import java.io.Serializable;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
@@ -11,8 +13,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class CriarDocumentoDTO {
-	
+public class CriarDocumentoDTO /*implements Serializable //Usada para registrar que os objetos intanciados pode ser transformados em uma sequência de bytes*/ {
+
 	private String titulo;
 	private String tipoDocumento;
 	private MultipartFile anexo;

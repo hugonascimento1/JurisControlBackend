@@ -1,5 +1,7 @@
 package com.juriscontrol.demo.model;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,7 +22,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Documento {
+public class Documento /*implements Serializable //Usada para registrar que os objetos intanciados pode ser transformados em uma sequência de bytes*/ {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
