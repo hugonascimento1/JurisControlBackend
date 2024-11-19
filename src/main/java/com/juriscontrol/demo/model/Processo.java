@@ -68,4 +68,8 @@ public class Processo {
     @OneToMany(mappedBy = "processo")
     private List<RegistroDeInfo> registrosDeInfo;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "processo")
+    private List<Documento> documentos;
+
 }

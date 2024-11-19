@@ -2,6 +2,8 @@ package com.juriscontrol.demo.model;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -31,6 +33,7 @@ public class RegistroDeInfo {
     @NonNull
     private String descricao;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "processo_id")
     private Processo processo;
