@@ -36,7 +36,10 @@ public class DocumentoService {
             documento.setProcesso(opProcesso.get());
             documento.setTitulo(documentoDTO.getTitulo());
             documento.setTipoDocumento(documentoDTO.getTipoDocumento());
-            documento.setAnexo(documentoDTO.getAnexo().getBytes());    
+            documento.setTamanhoDoc(documentoDTO.getTamanhoDoc());
+            documento.setAnexo(documentoDTO.getAnexo().getBytes());
+            
+            // pode haver mudanças
 
 		    return documentoRepository.save(documento);
         } else {

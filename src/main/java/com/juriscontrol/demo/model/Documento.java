@@ -33,6 +33,9 @@ public class Documento /*implements Serializable //Usada para registrar que os o
 
 	@NonNull
 	private String tipoDocumento;
+
+	@NonNull
+	private Long tamanhoDoc;
 	
 	@Lob
 	private byte[] anexo;

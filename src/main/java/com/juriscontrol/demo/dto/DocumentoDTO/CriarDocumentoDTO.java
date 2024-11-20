@@ -17,6 +17,7 @@ public class CriarDocumentoDTO /*implements Serializable //Usada para registrar 
 
 	private String titulo;
 	private String tipoDocumento;
+	private Long tamanhoDoc;
 	private MultipartFile anexo;
 	private Long processoId;
 }
