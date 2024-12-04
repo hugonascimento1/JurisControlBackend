@@ -1,6 +1,6 @@
 package com.juriscontrol.demo.dto.DocumentoDTO;
 
-import java.io.Serializable;
+// import java.io.Serializable;
 
 import org.springframework.web.multipart.MultipartFile;
 

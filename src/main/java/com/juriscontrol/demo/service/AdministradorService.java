@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.juriscontrol.demo.dto.AdministradorDTO.AtualizarAdministradorDTO;
@@ -21,6 +22,9 @@ public class AdministradorService {
     
     @Autowired
     private AdministradorRepository administradorRepository;
+
+    // @Autowired
+    // private BCryptPasswordEncoder passwordEncoder;
 
     public Administrador criarAdministrador(CriarAdministradorDTO dto) {
         Administrador administrador = new Administrador();
@@ -71,15 +75,6 @@ public class AdministradorService {
             ))
             .collect(Collectors.toList());
     }
-
-    // private String id;
-    // private String nome;
-    // private String email;
-    // private String senha;
-    // private String token;
-    // private Long escritorioId;
-
-    
 
     public void deletarAdministrador(Long id) throws AdministradorNotFoundException {
         Optional<Administrador> opAdministrador = administradorRepository.findById(id);

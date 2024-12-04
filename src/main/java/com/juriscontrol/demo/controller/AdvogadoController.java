@@ -30,7 +30,7 @@ public class AdvogadoController {
     @Autowired
     private AdvogadoService advogadoService;
 
-    @PostMapping("")
+    @PostMapping("/cadastrar")
     public ResponseEntity<Advogado> criarAdvogado(@RequestBody CriarAdvogadoDTO dto) {
         Advogado advogadoCriado = advogadoService.criarAdvogado(dto);
         return new ResponseEntity<>(advogadoCriado, HttpStatus.CREATED);

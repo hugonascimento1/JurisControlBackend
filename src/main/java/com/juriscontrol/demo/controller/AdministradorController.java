@@ -33,7 +33,7 @@ public class AdministradorController {
     @Autowired
     private AdministradorService administradorService;
 
-    @PostMapping("")
+    @PostMapping("/cadastrar")
     public ResponseEntity<Administrador> criarAdministrador(@RequestBody CriarAdministradorDTO dto) {
         Administrador administradorCriado = administradorService.criarAdministrador(dto);
         return new ResponseEntity<>(administradorCriado, HttpStatus.CREATED);

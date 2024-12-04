@@ -6,7 +6,7 @@ import java.util.List;
 import com.juriscontrol.demo.dto.AdvogadoDTO.ListaAdvogadoDTO;
 import com.juriscontrol.demo.dto.AudienciaDTO.ListaAudienciaDTO;
 import com.juriscontrol.demo.dto.ClienteDTO.ListaClienteDTO;
-import com.juriscontrol.demo.dto.DocumentoDTO.ListaDocumentoDTO;
+// import com.juriscontrol.demo.dto.DocumentoDTO.ListaDocumentoDTO;
 import com.juriscontrol.demo.dto.RegistroDeInfoDTO.ExibirRegistroDeInfoDTO;
 
 import lombok.AllArgsConstructor;

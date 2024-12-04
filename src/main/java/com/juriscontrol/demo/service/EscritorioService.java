@@ -1,6 +1,6 @@
 package com.juriscontrol.demo.service;
 
-import java.util.List;
+// import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.juriscontrol.demo.dto.EscritorioDTO.AtualizarEscritorioDTO;
 import com.juriscontrol.demo.dto.EscritorioDTO.CriarEscritorioDTO;
-import com.juriscontrol.demo.dto.EscritorioDTO.ListaEscritorioDTO;
+// import com.juriscontrol.demo.dto.EscritorioDTO.ListaEscritorioDTO;
 import com.juriscontrol.demo.exception.EscritorioNotFoundException;
 import com.juriscontrol.demo.model.Escritorio;
 import com.juriscontrol.demo.repository.EscritorioRepository;

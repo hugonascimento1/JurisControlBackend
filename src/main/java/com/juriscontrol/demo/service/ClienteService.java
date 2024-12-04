@@ -5,6 +5,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+// import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.juriscontrol.demo.dto.ClienteDTO.AtualizarClienteDTO;
@@ -21,6 +23,9 @@ public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
 
+    // @Autowired
+    // private BCryptPasswordEncoder passwordEncoder;
+
     public Cliente salvar(Cliente cliente) {
         return clienteRepository.save(cliente);
     }
@@ -31,6 +36,8 @@ public class ClienteService {
         cliente.setCpf(dto.getCpf());
         cliente.setTelefone(dto.getTelefone());
         cliente.setEndereco(dto.getEndereco());
+        cliente.setEmail(dto.getEmail());
+        cliente.setSenha(dto.getSenha());
         
         return clienteRepository.save(cliente);
     }
@@ -98,5 +105,4 @@ public class ClienteService {
             throw new ClienteNotFoundException("Cliente não encontrado");
         }
     }
-
 }

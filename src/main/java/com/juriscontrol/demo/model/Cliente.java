@@ -23,6 +23,12 @@ public class Cliente {
 
     @NonNull
     private String nome;
+
+    @NonNull
+    private String email;
+
+    @NonNull
+    private String senha;
     
     @NonNull
     private String cpf;
@@ -35,6 +41,4 @@ public class Cliente {
 
     @NonNull
     private String tipo;
-
-
 }

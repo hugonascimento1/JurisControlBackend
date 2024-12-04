@@ -10,11 +10,11 @@ import org.springframework.stereotype.Service;
 
 import com.juriscontrol.demo.dto.AdvogadoDTO.AdvogadoResumoDTO;
 import com.juriscontrol.demo.dto.AdvogadoDTO.ListaAdvogadoDTO;
-import com.juriscontrol.demo.dto.AdvogadoDTO.ListaTudoAdvogadoDTO;
+// import com.juriscontrol.demo.dto.AdvogadoDTO.ListaTudoAdvogadoDTO;
 import com.juriscontrol.demo.dto.AudienciaDTO.ListaAudienciaDTO;
-import com.juriscontrol.demo.dto.AudienciaDTO.ListaTudoAudienciaDTO;
-import com.juriscontrol.demo.dto.ClienteDTO.ClienteResumoDTO;
-import com.juriscontrol.demo.dto.ClienteDTO.CriarClienteDTO;
+// import com.juriscontrol.demo.dto.AudienciaDTO.ListaTudoAudienciaDTO;
+// import com.juriscontrol.demo.dto.ClienteDTO.ClienteResumoDTO;
+// import com.juriscontrol.demo.dto.ClienteDTO.CriarClienteDTO;
 import com.juriscontrol.demo.dto.ClienteDTO.ListaClienteDTO;
 import com.juriscontrol.demo.dto.ProcessoDTO.AtualizarProcessoDTO;
 import com.juriscontrol.demo.dto.ProcessoDTO.CriarProcessoDTO;

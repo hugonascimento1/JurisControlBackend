@@ -2,6 +2,8 @@ package com.juriscontrol.demo.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -32,47 +34,25 @@ public class Advogado {
     @NonNull
     private String registroOAB;
 
+    // @NonNull
+    // private String token;
+
     @NonNull
-    private String token;
+    private String email;
+
+    @NonNull
+    private String senha;
 
     @ManyToOne
     @JoinColumn(name = "escritorio_id")
     private Escritorio escritorio;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "advogadoAutor")
     private List<Processo> processosComoAutor;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "advogadoReu") 
     private List<Processo> processosComoReu;
-
-    public Advogado(Long id, String nome, String registroOAB) {
-        this.id = id;
-        this.nome = nome;
-        this.registroOAB = registroOAB;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getRegistroOAB() {
-        return registroOAB;
-    }
-
-    public void setRegistroOAB(String registroOAB) {
-        this.registroOAB = registroOAB;
-    }
 
 }
