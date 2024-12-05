@@ -30,7 +30,8 @@ public class AdvogadoService {
         Advogado advogado = new Advogado();
         advogado.setNome(dto.getNome());
         advogado.setRegistroOAB(dto.getRegistroOAB());
-        advogado.setSenha(dto.getToken());
+        advogado.setEmail(dto.getEmail());
+        advogado.setSenha(dto.getSenha());
         return advogadoRepository.save(advogado);
     }
 
@@ -40,8 +41,13 @@ public class AdvogadoService {
             Advogado advogado = opAdvogado.get();
             advogado.setNome(dto.getNome());
             advogado.setRegistroOAB(dto.getRegistroOAB());
-            advogado.setSenha(dto.getToken());
+            advogado.setEmail(dto.getEmail());
+            advogado.setSenha(dto.getSenha());
             return advogadoRepository.save(advogado);
+            // private String nome;
+    // private String registroOAB;
+    // private String email;
+    // private String senha;
         }
         throw new AdvogadoNotFoundException("Advogado não encontrado.");
 
@@ -64,6 +70,7 @@ public class AdvogadoService {
                 advogado.getId(),
                 advogado.getNome(),
                 advogado.getRegistroOAB(),
+                advogado.getEmail(),
                 advogado.getSenha(),
                 processosComoAutor,
                 processosComoReu
@@ -87,6 +94,7 @@ public class AdvogadoService {
                     advogado.getId(),
                     advogado.getNome(),
                     advogado.getRegistroOAB(),
+                    advogado.getEmail(),
                     advogado.getSenha(),
                     processosComoAutor,
                     processosComoReu

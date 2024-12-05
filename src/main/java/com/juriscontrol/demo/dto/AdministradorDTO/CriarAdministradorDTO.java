@@ -14,6 +14,6 @@ public class CriarAdministradorDTO {
     private String nome;
     private String email;
     private String senha;
-    private String token;
+    // private String token;
     private Long escritorioId;
 }

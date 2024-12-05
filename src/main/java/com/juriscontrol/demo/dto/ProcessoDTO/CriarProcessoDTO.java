@@ -2,7 +2,8 @@ package com.juriscontrol.demo.dto.ProcessoDTO;
 
 import java.time.LocalDateTime;
 
-import com.juriscontrol.demo.dto.ClienteDTO.CriarClienteDTO;
+// import com.juriscontrol.demo.dto.ClienteDTO.CriarClienteDTO;
+import com.juriscontrol.demo.dto.ClienteDTO.CriarClientePeloProcesso;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,7 +23,9 @@ public class CriarProcessoDTO {
     private LocalDateTime dataInicio;
     private Long advogadoAutorId;
     private Long adovgadoReuId;
-    private CriarClienteDTO clienteAutor;
-    private CriarClienteDTO clienteReu;
+    // private CriarClienteDTO clienteAutor;
+    // private CriarClienteDTO clienteReu;
+    private CriarClientePeloProcesso clienteAutor;
+    private CriarClientePeloProcesso clienteReu;
 
 }

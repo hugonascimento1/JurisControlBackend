@@ -40,5 +40,5 @@ public class Cliente {
     private String endereco;
 
     @NonNull
-    private String tipo;
+    private String parte;
 }

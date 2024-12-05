@@ -16,6 +16,9 @@ public class CriarClienteDTO {
     private String telefone;
     private String endereco;
     private String email;
-    private  String senha;
+    private String senha;
+    private String parte;
+
+    
     
 }

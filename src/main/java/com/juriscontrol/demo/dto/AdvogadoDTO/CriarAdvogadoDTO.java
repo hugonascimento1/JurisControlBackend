@@ -13,6 +13,8 @@ public class CriarAdvogadoDTO {
     
     private String nome;
     private String registroOAB;
-    private String token;
+    private String email;
+    private String senha;
+    // private String token;
     private Long escritorioId;
 }

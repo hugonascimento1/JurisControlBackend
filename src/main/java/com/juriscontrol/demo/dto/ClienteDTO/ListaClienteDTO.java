@@ -14,8 +14,10 @@ public class ListaClienteDTO {
     private Long id;
     private String nome;
     private String telefone;
-    private String tipo;
+    private String parte;
     private String cpf;
     private String endereco;
+
+    
 
 }

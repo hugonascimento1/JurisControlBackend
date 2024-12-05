@@ -38,6 +38,7 @@ public class ClienteService {
         cliente.setEndereco(dto.getEndereco());
         cliente.setEmail(dto.getEmail());
         cliente.setSenha(dto.getSenha());
+        cliente.setParte(dto.getParte());
         
         return clienteRepository.save(cliente);
     }
@@ -47,9 +48,20 @@ public class ClienteService {
         if (opCliente.isPresent()) {
             Cliente cliente = opCliente.get();
             cliente.setNome(dto.getNome());
+            cliente.setCpf(dto.getCpf());
             cliente.setTelefone(dto.getTelefone());
             cliente.setEndereco(dto.getEndereco());
-            cliente.setTipo(dto.getTipo());
+            cliente.setEmail(dto.getEmail());
+            cliente.setSenha(dto.getSenha());
+            cliente.setParte(dto.getParte());
+
+             // private String nome;
+    // private String cpf;
+    // private String telefone;
+    // private String endereco;
+    // private String email;
+    // private String senha;
+    // private String parte;
 
             return clienteRepository.save(cliente);
         }
@@ -66,7 +78,7 @@ public class ClienteService {
                 cliente.getCpf(),
                 cliente.getTelefone(),
                 cliente.getEndereco(),
-                cliente.getTipo()
+                cliente.getParte()
             );    
         }
         throw new ClienteNotFoundException("Cliente não encontrado");
@@ -76,10 +88,17 @@ public class ClienteService {
         return clienteRepository.findAll().stream().map(cliente -> new ListaClienteDTO(
             cliente.getId(),
             cliente.getNome(),
+            cliente.getTelefone(),
+            cliente.getParte(),
             cliente.getCpf(),
-            cliente.getTipo(),
-            cliente.getEndereco(),
-            cliente.getTelefone()
+            cliente.getEndereco()
+
+            // private Long id;
+    // private String nome;
+    // private String telefone;
+    // private String tipo;
+    // private String cpf;
+    // private String endereco;
         ))
         .collect(Collectors.toList());
     }

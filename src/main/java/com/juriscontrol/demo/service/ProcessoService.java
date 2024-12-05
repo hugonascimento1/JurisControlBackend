@@ -128,7 +128,7 @@ public class ProcessoService {
                     processo.getClienteAutor().getId(),
                     processo.getClienteAutor().getNome(),
                     processo.getClienteAutor().getTelefone(),
-                    processo.getClienteAutor().getTipo(),
+                    processo.getClienteAutor().getParte(),
                     processo.getClienteAutor().getCpf(),
                     processo.getClienteAutor().getEndereco()
                 ) : null,
@@ -136,7 +136,7 @@ public class ProcessoService {
                     processo.getClienteReu().getId(),
                     processo.getClienteReu().getNome(),
                     processo.getClienteReu().getTelefone(),
-                    processo.getClienteReu().getTipo(),
+                    processo.getClienteReu().getParte(),
                     processo.getClienteReu().getCpf(),
                     processo.getClienteReu().getEndereco()
                 ) : null,
@@ -189,7 +189,7 @@ public class ProcessoService {
                     processo.getClienteAutor().getId(),
                     processo.getClienteAutor().getNome(),
                     processo.getClienteAutor().getTelefone(),
-                    processo.getClienteAutor().getTipo(),
+                    processo.getClienteAutor().getParte(),
                     processo.getClienteAutor().getCpf(),
                     processo.getClienteAutor().getEndereco()
                 ) : null,
@@ -197,7 +197,7 @@ public class ProcessoService {
                     processo.getClienteReu().getId(),
                     processo.getClienteReu().getNome(),
                     processo.getClienteReu().getTelefone(),
-                    processo.getClienteReu().getTipo(),
+                    processo.getClienteReu().getParte(),
                     processo.getClienteReu().getCpf(),
                     processo.getClienteReu().getEndereco()
                 ) : null,

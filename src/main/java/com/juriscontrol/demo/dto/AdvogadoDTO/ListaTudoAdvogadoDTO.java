@@ -17,7 +17,9 @@ public class ListaTudoAdvogadoDTO {
     private Long id;
     private String nome;
     private String registroOAB;
-    private String token;
+    private String email;
+    private String senha;
     private List<ProcessoResumoDTO> processosComoAutor;
     private List<ProcessoResumoDTO> processosComoReu;
+    
 }

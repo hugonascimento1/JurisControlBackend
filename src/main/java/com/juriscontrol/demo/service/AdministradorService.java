@@ -41,7 +41,7 @@ public class AdministradorService {
             administrador.setNome(dto.getNome());
             administrador.setEmail(dto.getEmail());
             administrador.setSenha(dto.getSenha());
-            administrador.setToken(dto.getToken());
+            // administrador.setToken(dto.getToken());
             return administradorRepository.save(administrador);
         }
         throw new AdministradorNotFoundException("Administrador não encontrado.");
@@ -55,9 +55,9 @@ public class AdministradorService {
                 administrador.getId(),
                 administrador.getNome(),
                 administrador.getEmail(),
-                administrador.getSenha(),
-                administrador.getToken(),
-                administrador.getEscritorio() != null ? administrador.getEscritorio().getId() : null
+                administrador.getSenha()
+                // administrador.getToken(),
+                // administrador.getEscritorio() != null ? administrador.getEscritorio().getId() : null
             );
         }
         throw new AdministradorNotFoundException("Administrador não encontrado");
@@ -69,9 +69,9 @@ public class AdministradorService {
                 administrador.getId(),
                 administrador.getNome(),
                 administrador.getEmail(),
-                administrador.getSenha(),
-                administrador.getToken(),
-                administrador.getEscritorio() != null ? administrador.getEscritorio().getId() : null // Adicionando escritorioId
+                administrador.getSenha()
+                // administrador.getToken(),
+                // administrador.getEscritorio() != null ? administrador.getEscritorio().getId() : null // Adicionando escritorioId
             ))
             .collect(Collectors.toList());
     }

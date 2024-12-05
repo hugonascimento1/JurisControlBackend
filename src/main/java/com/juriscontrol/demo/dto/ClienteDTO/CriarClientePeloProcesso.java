@@ -9,22 +9,12 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class AtualizarClienteDTO {
+public class CriarClientePeloProcesso {
     
     private String nome;
     private String cpf;
     private String telefone;
     private String endereco;
-    private String email;
-    private String senha;
     private String parte;
-
-     // private String nome;
-    // private String cpf;
-    // private String telefone;
-    // private String endereco;
-    // private String email;
-    // private String senha;
-    // private String parte;
 
 }

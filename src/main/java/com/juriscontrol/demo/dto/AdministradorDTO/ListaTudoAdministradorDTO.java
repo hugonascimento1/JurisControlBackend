@@ -14,7 +14,7 @@ public class ListaTudoAdministradorDTO {
     private String nome;
     private String email;
     private String senha;
-    private String token;
-    private Long escritorioId;
+    // private String token;
+    // private Long escritorioId;
 
 }
