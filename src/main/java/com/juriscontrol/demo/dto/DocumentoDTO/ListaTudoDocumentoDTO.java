@@ -9,10 +9,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class ListaTodosDocumentosDTO {
+public class ListaTudoDocumentoDTO {
     
     private Long id;
-    private String titulo;
-	private String tipoDocumento;
-	private byte[] anexo;
+    private String nomeDocumento;
+    private String tipoDocumento;
+    private Long tamDocumento;
+    private byte[] anexo;
 }

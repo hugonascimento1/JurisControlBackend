@@ -11,6 +11,6 @@ import lombok.Setter;
 @Setter
 public class ListaDocumentoDTO {
     
-    private String titulo;
+    private String nomeDocumento;
     private byte[] anexo;
 }
