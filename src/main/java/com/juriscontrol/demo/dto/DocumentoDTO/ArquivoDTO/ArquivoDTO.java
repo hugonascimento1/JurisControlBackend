@@ -15,5 +15,4 @@ public class ArquivoDTO {
     private String tipoArquivo;
     private Long tamArquivo;
     private String arquivoUri;
-
 }

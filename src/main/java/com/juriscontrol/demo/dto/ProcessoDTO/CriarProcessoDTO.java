@@ -22,7 +22,7 @@ public class CriarProcessoDTO {
     private String tipo;
     private LocalDateTime dataInicio;
     private Long advogadoAutorId;
-    private Long adovgadoReuId;
+    private Long advogadoReuId;
     // private CriarClienteDTO clienteAutor;
     // private CriarClienteDTO clienteReu;
     private CriarClientePeloProcesso clienteAutor;

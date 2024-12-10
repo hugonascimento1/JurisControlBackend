@@ -3,10 +3,12 @@ package com.juriscontrol.demo.service;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.Collections;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.juriscontrol.demo.dto.DocumentoDTO.ListaDocumentoDTO;
 import com.juriscontrol.demo.dto.RegistroDeInfoDTO.CriarRegistroDeInfoDTO;
 import com.juriscontrol.demo.dto.RegistroDeInfoDTO.ExibirRegistroDeInfoDTO;
 import com.juriscontrol.demo.exception.RegistroDeInfoNotFoundException;
@@ -45,7 +47,13 @@ public class RegistroDeInfoService {
         return registroDeInfoRepository.findAll().stream()
             .map(registroDeInfo -> new ExibirRegistroDeInfoDTO(
                 registroDeInfo.getData(),
-                registroDeInfo.getDescricao()
+                registroDeInfo.getDescricao(),
+                registroDeInfo.getDocumentos() != null ? registroDeInfo.getDocumentos().stream()
+                    .map(documento -> new ListaDocumentoDTO(
+                        documento.getNomeDocumento(),
+                        documento.getAnexo()
+                    ))
+                    .collect(Collectors.toList()) : Collections.emptyList()
             ))
             .collect(Collectors.toList());
     }
@@ -56,7 +64,13 @@ public class RegistroDeInfoService {
             RegistroDeInfo registroDeInfo = opRegistroDeInfo.get();
             return new ExibirRegistroDeInfoDTO(
                 registroDeInfo.getData(),
-                registroDeInfo.getDescricao()
+                registroDeInfo.getDescricao(),
+                registroDeInfo.getDocumentos() != null ? registroDeInfo.getDocumentos().stream()
+                    .map(documento -> new ListaDocumentoDTO(
+                        documento.getNomeDocumento(),
+                        documento.getAnexo()
+                    ))
+                    .collect(Collectors.toList()) : null
             );
         }
         throw new RegistroDeInfoNotFoundException("Registro de informação não encontrado.");

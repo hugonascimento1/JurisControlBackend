@@ -18,6 +18,5 @@ public class CriarVariosDocumentoDTO {
     private String tipoDocumento;
     private Long tamDocumento;
     private List<MultipartFile> anexos;
-    private Long processId;
-
+    private Long registroId;
 }

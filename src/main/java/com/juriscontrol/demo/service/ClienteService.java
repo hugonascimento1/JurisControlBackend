@@ -55,14 +55,6 @@ public class ClienteService {
             cliente.setSenha(dto.getSenha());
             cliente.setParte(dto.getParte());
 
-             // private String nome;
-    // private String cpf;
-    // private String telefone;
-    // private String endereco;
-    // private String email;
-    // private String senha;
-    // private String parte;
-
             return clienteRepository.save(cliente);
         }
         throw new ClienteNotFoundException("cliente não encontrado.");
@@ -92,13 +84,6 @@ public class ClienteService {
             cliente.getParte(),
             cliente.getCpf(),
             cliente.getEndereco()
-
-            // private Long id;
-    // private String nome;
-    // private String telefone;
-    // private String tipo;
-    // private String cpf;
-    // private String endereco;
         ))
         .collect(Collectors.toList());
     }

@@ -16,6 +16,7 @@ import com.juriscontrol.demo.dto.AudienciaDTO.ListaAudienciaDTO;
 // import com.juriscontrol.demo.dto.ClienteDTO.ClienteResumoDTO;
 // import com.juriscontrol.demo.dto.ClienteDTO.CriarClienteDTO;
 import com.juriscontrol.demo.dto.ClienteDTO.ListaClienteDTO;
+import com.juriscontrol.demo.dto.DocumentoDTO.ListaDocumentoDTO;
 import com.juriscontrol.demo.dto.ProcessoDTO.AtualizarProcessoDTO;
 import com.juriscontrol.demo.dto.ProcessoDTO.CriarProcessoDTO;
 import com.juriscontrol.demo.dto.ProcessoDTO.ListaTudoProcessoDTO;
@@ -49,7 +50,7 @@ public class ProcessoService {
         processo.setDataInicio(dto.getDataInicio());
         
         AdvogadoResumoDTO advogadoAutorDTO = advogadoService.buscarAdvogadoResumoPorId(dto.getAdvogadoAutorId());
-        AdvogadoResumoDTO advogadoReuDTO = advogadoService.buscarAdvogadoResumoPorId(dto.getAdovgadoReuId());
+        AdvogadoResumoDTO advogadoReuDTO = advogadoService.buscarAdvogadoResumoPorId(dto.getAdvogadoReuId());
         
         // ClienteResumoDTO clienteAutorDTO = clienteService.buscarClienteResumoPorId(dto.getAutorId());
         // ClienteResumoDTO clienteReuDTO = clienteService.buscarClienteResumoPorId(dto.getReuId());
@@ -150,15 +151,15 @@ public class ProcessoService {
                 processo.getRegistrosDeInfo() != null ? processo.getRegistrosDeInfo().stream()
                     .map(registroDeInfo -> new ExibirRegistroDeInfoDTO(
                         registroDeInfo.getData(),
-                        registroDeInfo.getDescricao()
+                        registroDeInfo.getDescricao(),
+                        registroDeInfo.getDocumentos() != null ? registroDeInfo.getDocumentos().stream()
+                            .map(documento -> new ListaDocumentoDTO(
+                                documento.getNomeDocumento(),
+                                documento.getAnexo()
+                            ))
+                            .collect(Collectors.toList()) : Collections.emptyList()
                     ))
-                    .collect(Collectors.toList()) : Collections.emptyList()/*,   
-                processo.getDocumentos() != null ? processo.getDocumentos().stream()
-                    .map(documento -> new ListaDocumentoDTO(
-                        documento.getTitulo(),
-                        documentoo.getAnexo()
-                    ))
-                    .collect(Collectors.toList()) : Collections.emptyList()*/
+                    .collect(Collectors.toList()) : Collections.emptyList()  
             ))
             .collect(Collectors.toList());
     }
@@ -211,15 +212,15 @@ public class ProcessoService {
                 processo.getRegistrosDeInfo() != null ? processo.getRegistrosDeInfo().stream()
                     .map(registroDeInfo -> new ExibirRegistroDeInfoDTO(
                         registroDeInfo.getData(),
-                        registroDeInfo.getDescricao()
+                        registroDeInfo.getDescricao(),
+                        registroDeInfo.getDocumentos() != null ? registroDeInfo.getDocumentos().stream()
+                            .map(documento -> new ListaDocumentoDTO(
+                                documento.getNomeDocumento(),
+                                documento.getAnexo()
+                            ))
+                            .collect(Collectors.toList()) : Collections.emptyList()
                     ))
-                    .collect(Collectors.toList()) : Collections.emptyList()/*,   
-                processo.getDocumentos() != null ? processo.getDocumentos().stream()
-                    .map(documento -> new ListaDocumentoDTO(
-                        documento.getTitulo(),
-                        documentoo.getAnexo()
-                    ))
-                    .collect(Collectors.toList()) : Collections.emptyList()*/    
+                    .collect(Collectors.toList()) : Collections.emptyList() 
             );
         }
         throw new ProcessoNotFoundException("Processo não encontrado");
