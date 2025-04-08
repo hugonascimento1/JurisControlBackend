@@ -23,106 +23,17 @@ public class AdvogadoService {
     @Autowired
     private AdvogadoRepository advogadoRepository;
 
-    // @Autowired
-    // private BCryptPasswordEncoder passwordEncoder;
+    
+    //public Login
 
-    public Advogado criarAdvogado(CriarAdvogadoDTO dto) {
-        Advogado advogado = new Advogado();
-        advogado.setNome(dto.getNome());
-        advogado.setRegistroOAB(dto.getRegistroOAB());
-        advogado.setEmail(dto.getEmail());
-        advogado.setSenha(dto.getSenha());
-        return advogadoRepository.save(advogado);
-    }
+    //public cadastro
 
-    public Advogado atualizarAdvogado(Long id, AtualizarAdvogadoDTO dto) throws AdvogadoNotFoundException {
-        Optional<Advogado> opAdvogado = advogadoRepository.findById(id);
-        if (opAdvogado.isPresent()) {
-            Advogado advogado = opAdvogado.get();
-            advogado.setNome(dto.getNome());
-            advogado.setRegistroOAB(dto.getRegistroOAB());
-            advogado.setEmail(dto.getEmail());
-            advogado.setSenha(dto.getSenha());
-            return advogadoRepository.save(advogado);
-            // private String nome;
-    // private String registroOAB;
-    // private String email;
-    // private String senha;
-        }
-        throw new AdvogadoNotFoundException("Advogado não encontrado.");
+    //adicionarUsuario
 
-    }
+    //deletarUsuario
 
-    public ListaTudoAdvogadoDTO buscarPorIdAdvogado(Long id) throws AdvogadoNotFoundException {
-        Optional<Advogado> opAdvogado = advogadoRepository.findById(id);
-        if (opAdvogado.isPresent()) {
-            Advogado advogado = opAdvogado.get();
+    //atualizarUsuario
 
-            List<ProcessoResumoDTO> processosComoAutor = advogado.getProcessosComoAutor().stream()
-                .map(processo -> new ProcessoResumoDTO(processo.getNumeroProcesso(), processo.getDescricao()))
-                .collect(Collectors.toList());
-
-            List<ProcessoResumoDTO> processosComoReu = advogado.getProcessosComoReu().stream()
-                .map(processo -> new ProcessoResumoDTO(processo.getNumeroProcesso(), processo.getDescricao()))
-                .collect(Collectors.toList());
-                
-            return new ListaTudoAdvogadoDTO(
-                advogado.getId(),
-                advogado.getNome(),
-                advogado.getRegistroOAB(),
-                advogado.getEmail(),
-                advogado.getSenha(),
-                processosComoAutor,
-                processosComoReu
-            );
-
-        }
-        throw new AdvogadoNotFoundException("Advogado não encontrado");
-    }
-
-    public List<ListaTudoAdvogadoDTO> buscarTodosAdvogados() {
-        return advogadoRepository.findAll().stream().map(advogado -> {
-            List<ProcessoResumoDTO> processosComoAutor = advogado.getProcessosComoAutor().stream()
-                .map(processo -> new ProcessoResumoDTO(processo.getNumeroProcesso(), processo.getDescricao()))
-                .collect(Collectors.toList());
-
-            List<ProcessoResumoDTO> processosComoReu = advogado.getProcessosComoReu().stream()
-                .map(processo -> new ProcessoResumoDTO(processo.getNumeroProcesso(), processo.getDescricao()))
-                .collect(Collectors.toList());    
-
-                return new ListaTudoAdvogadoDTO(
-                    advogado.getId(),
-                    advogado.getNome(),
-                    advogado.getRegistroOAB(),
-                    advogado.getEmail(),
-                    advogado.getSenha(),
-                    processosComoAutor,
-                    processosComoReu
-                );
-        }).collect(Collectors.toList());
-        
-    }
-
-    public AdvogadoResumoDTO buscarAdvogadoResumoPorId(Long id) throws AdvogadoNotFoundException {
-        Optional<Advogado> opAdvogado = advogadoRepository.findById(id);
-        if (opAdvogado.isPresent()) {
-            Advogado advogado = opAdvogado.get();
-            return new AdvogadoResumoDTO(
-                advogado.getId(),
-                advogado.getNome(),
-                advogado.getRegistroOAB()
-            );
-        }
-        throw new AdvogadoNotFoundException("Advogado não encontrado!");
-    }
-
-    public void deletarAdvogado(Long id) throws AdvogadoNotFoundException {
-        Optional<Advogado> opAdvogado = advogadoRepository.findById(id);
-        if (opAdvogado.isPresent()) {
-            advogadoRepository.delete(opAdvogado.get());
-        } else {
-            throw new AdvogadoNotFoundException("Advogado não encontrado.");
-        }
-    }
+    //verUsuario
 
 }

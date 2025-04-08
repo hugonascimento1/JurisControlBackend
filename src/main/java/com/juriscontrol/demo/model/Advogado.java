@@ -8,8 +8,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,30 +20,14 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Advogado {
+public class Advogado extends Usuario{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NonNull
-    private String nome;
-
-    @NonNull
     private String registroOAB;
-
-    // @NonNull
-    // private String token;
-
-    @NonNull
-    private String email;
-
-    @NonNull
-    private String senha;
-
-    @ManyToOne
-    @JoinColumn(name = "escritorio_id")
-    private Escritorio escritorio;
 
     @JsonIgnore
     @OneToMany(mappedBy = "advogadoAutor")
