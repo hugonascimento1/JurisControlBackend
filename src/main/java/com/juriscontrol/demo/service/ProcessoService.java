@@ -10,22 +10,12 @@ import org.springframework.stereotype.Service;
 
 import com.juriscontrol.demo.dto.AdvogadoDTO.AdvogadoResumoDTO;
 import com.juriscontrol.demo.dto.AdvogadoDTO.ListaAdvogadoDTO;
-// import com.juriscontrol.demo.dto.AdvogadoDTO.ListaTudoAdvogadoDTO;
-import com.juriscontrol.demo.dto.AudienciaDTO.ListaAudienciaDTO;
-// import com.juriscontrol.demo.dto.AudienciaDTO.ListaTudoAudienciaDTO;
-// import com.juriscontrol.demo.dto.ClienteDTO.ClienteResumoDTO;
-// import com.juriscontrol.demo.dto.ClienteDTO.CriarClienteDTO;
-import com.juriscontrol.demo.dto.ClienteDTO.ListaClienteDTO;
-import com.juriscontrol.demo.dto.DocumentoDTO.ListaDocumentoDTO;
 import com.juriscontrol.demo.dto.ProcessoDTO.AtualizarProcessoDTO;
 import com.juriscontrol.demo.dto.ProcessoDTO.CriarProcessoDTO;
 import com.juriscontrol.demo.dto.ProcessoDTO.ListaTudoProcessoDTO;
-import com.juriscontrol.demo.dto.RegistroDeInfoDTO.ExibirRegistroDeInfoDTO;
 import com.juriscontrol.demo.exception.AdvogadoNotFoundException;
-import com.juriscontrol.demo.exception.ClienteNotFoundException;
 import com.juriscontrol.demo.exception.ProcessoNotFoundException;
 import com.juriscontrol.demo.model.Advogado;
-import com.juriscontrol.demo.model.Cliente;
 import com.juriscontrol.demo.model.Processo;
 import com.juriscontrol.demo.repository.ProcessoRepository;
 
@@ -38,53 +28,35 @@ public class ProcessoService {
     @Autowired
     private AdvogadoService advogadoService;
 
-    @Autowired
-    private ClienteService clienteService;
-
-    public Processo criarProcesso(CriarProcessoDTO dto) throws AdvogadoNotFoundException, ClienteNotFoundException {
+    public Processo criarProcesso(CriarProcessoDTO dto) throws AdvogadoNotFoundException {
         Processo processo = new Processo();
         processo.setNumeroProcesso(dto.getNumeroProcesso());
-        processo.setDescricao(dto.getDescricao());
+        processo.setVara(dto.getVara());
+        processo.setClasseTipo(dto.getClasseTipo());
+        processo.setAssuntosTitulo(dto.getAssuntosTitulo());
         processo.setStatus(dto.getStatus());
-        processo.setTipo(dto.getTipo());
-        processo.setDataInicio(dto.getDataInicio());
+        processo.setAutor(dto.getAutor());
+        processo.setReu(dto.getReu());
         
+        // Buscar advogados
         AdvogadoResumoDTO advogadoAutorDTO = advogadoService.buscarAdvogadoResumoPorId(dto.getAdvogadoAutorId());
         AdvogadoResumoDTO advogadoReuDTO = advogadoService.buscarAdvogadoResumoPorId(dto.getAdvogadoReuId());
-        
-        // ClienteResumoDTO clienteAutorDTO = clienteService.buscarClienteResumoPorId(dto.getAutorId());
-        // ClienteResumoDTO clienteReuDTO = clienteService.buscarClienteResumoPorId(dto.getReuId());
 
         Advogado advogadoAutor = new Advogado();
         advogadoAutor.setId(advogadoAutorDTO.getId());
         advogadoAutor.setNome(advogadoAutorDTO.getNome());
-        advogadoAutorDTO.setRegistroOAB(advogadoAutorDTO.getRegistroOAB());
+        advogadoAutor.setRegistroOAB(advogadoAutorDTO.getRegistroOAB());
 
         Advogado advogadoReu = new Advogado();
         advogadoReu.setId(advogadoReuDTO.getId());
         advogadoReu.setNome(advogadoReuDTO.getNome());
         advogadoReu.setRegistroOAB(advogadoReuDTO.getRegistroOAB());
 
-        Cliente clienteAutor = new Cliente();
-        clienteAutor.setNome(dto.getClienteAutor().getNome());
-        clienteAutor.setCpf(dto.getClienteAutor().getCpf());
-        clienteAutor.setTelefone(dto.getClienteAutor().getTelefone());
-        clienteAutor.setEndereco(dto.getClienteAutor().getEndereco());
-
-        clienteService.salvar(clienteAutor);
-
-        Cliente clienteReu = new Cliente();
-        clienteReu.setNome(dto.getClienteReu().getNome());
-        clienteReu.setCpf(dto.getClienteReu().getCpf());
-        clienteReu.setTelefone(dto.getClienteReu().getTelefone());
-        clienteReu.setEndereco(dto.getClienteReu().getEndereco());
-
-        clienteService.salvar(clienteReu);
-
         processo.setAdvogadoAutor(advogadoAutor);
         processo.setAdvogadoReu(advogadoReu);
-        processo.setClienteAutor(clienteAutor);
-        processo.setClienteReu(clienteReu);
+        
+        // Nota: A lista de movimentos deve ser inicializada ou atribuída conforme necessário
+        // A lista de anexos seria gerenciada por outro serviço
 
         return processoRepository.save(processo);
     }
@@ -93,12 +65,40 @@ public class ProcessoService {
         Optional<Processo> opProcesso = processoRepository.findById(id);
         if (opProcesso.isPresent()) {
             Processo processo = opProcesso.get();
-            processo.setDescricao(dto.getDescricao());
+            processo.setVara(dto.getVara());
+            processo.setClasseTipo(dto.getClasseTipo());
+            processo.setAssuntosTitulo(dto.getAssuntosTitulo());
             processo.setStatus(dto.getStatus());
-            processo.setTipo(dto.getTipo());
-            // processo.getAdvogadoAutor(dto.getAdvogadoAutorId());
-            // processo.getAdovgadoReu(dto.getAdovgadoReuId());
-            // processo.getDocumento(dto.getAnexo());
+            processo.setAdvogadoAutorId(dto.getAdvogadoAutorId());
+            processo.setAdvogadoReuId(dto.getAdvogadoReuId());
+            
+            // Atualizar advogados se necessário
+            if (dto.getAdvogadoAutorId() != null) {
+                try {
+                    AdvogadoResumoDTO advogadoAutorDTO = advogadoService.buscarAdvogadoResumoPorId(dto.getAdvogadoAutorId());
+                    Advogado advogadoAutor = new Advogado();
+                    advogadoAutor.setId(advogadoAutorDTO.getId());
+                    advogadoAutor.setNome(advogadoAutorDTO.getNome());
+                    advogadoAutor.setRegistroOAB(advogadoAutorDTO.getRegistroOAB());
+                    processo.setAdvogadoAutor(advogadoAutor);
+                } catch (AdvogadoNotFoundException e) {
+                    // Tratamento de erro
+                }
+            }
+            
+            if (dto.getAdvogadoReuId() != null) {
+                try {
+                    AdvogadoResumoDTO advogadoReuDTO = advogadoService.buscarAdvogadoResumoPorId(dto.getAdvogadoReuId());
+                    Advogado advogadoReu = new Advogado();
+                    advogadoReu.setId(advogadoReuDTO.getId());
+                    advogadoReu.setNome(advogadoReuDTO.getNome());
+                    advogadoReu.setRegistroOAB(advogadoReuDTO.getRegistroOAB());
+                    processo.setAdvogadoReu(advogadoReu);
+                } catch (AdvogadoNotFoundException e) {
+                    // Tratamento de erro
+                }
+            }
+            
             return processoRepository.save(processo);
         }
         throw new ProcessoNotFoundException("Processo não encontrado.");
@@ -111,55 +111,30 @@ public class ProcessoService {
             .map(processo -> new ListaTudoProcessoDTO(
                 processo.getId(),
                 processo.getNumeroProcesso(),
-                processo.getDescricao(),
+                processo.getVara(),
+                processo.getClasseTipo(),
+                processo.getAssuntosTitulo(),
                 processo.getStatus(),
-                processo.getTipo(),
-                processo.getDataInicio(),
+                processo.getAutor(),
                 processo.getAdvogadoAutor() != null ? new ListaAdvogadoDTO(
                     processo.getAdvogadoAutor().getId(),
                     processo.getAdvogadoAutor().getNome(),
                     processo.getAdvogadoAutor().getRegistroOAB()
                 ) : null,
+                processo.getReu(),
                 processo.getAdvogadoReu() != null ? new ListaAdvogadoDTO(
                     processo.getAdvogadoReu().getId(),
                     processo.getAdvogadoReu().getNome(),
                     processo.getAdvogadoReu().getRegistroOAB()
                 ) : null,
-                processo.getClienteAutor() != null ? new ListaClienteDTO(
-                    processo.getClienteAutor().getId(),
-                    processo.getClienteAutor().getNome(),
-                    processo.getClienteAutor().getTelefone(),
-                    processo.getClienteAutor().getParte(),
-                    processo.getClienteAutor().getCpf(),
-                    processo.getClienteAutor().getEndereco()
-                ) : null,
-                processo.getClienteReu() != null ? new ListaClienteDTO(
-                    processo.getClienteReu().getId(),
-                    processo.getClienteReu().getNome(),
-                    processo.getClienteReu().getTelefone(),
-                    processo.getClienteReu().getParte(),
-                    processo.getClienteReu().getCpf(),
-                    processo.getClienteReu().getEndereco()
-                ) : null,
-                processo.getAudiencias() != null ? processo.getAudiencias().stream()
-                    .map(audiencia -> new ListaAudienciaDTO(
-                        audiencia.getId(),
-                        audiencia.getDataHora(),
-                        audiencia.getLocal()
+                // Mapear anexos se necessário
+                processo.getAnexoDocumentos() != null ? processo.getAnexoDocumentos().stream()
+                    .map(anexo -> new ListaAnexoDTO(
+                        anexo.getId(),
+                        anexo.getNome(),
+                        anexo.getCaminho()
                     ))
-                    .collect(Collectors.toList()) : Collections.emptyList(), // Retorna lista vazia se nula
-                processo.getRegistrosDeInfo() != null ? processo.getRegistrosDeInfo().stream()
-                    .map(registroDeInfo -> new ExibirRegistroDeInfoDTO(
-                        registroDeInfo.getData(),
-                        registroDeInfo.getDescricao(),
-                        registroDeInfo.getDocumentos() != null ? registroDeInfo.getDocumentos().stream()
-                            .map(documento -> new ListaDocumentoDTO(
-                                documento.getNomeDocumento(),
-                                documento.getAnexo()
-                            ))
-                            .collect(Collectors.toList()) : Collections.emptyList()
-                    ))
-                    .collect(Collectors.toList()) : Collections.emptyList()  
+                    .collect(Collectors.toList()) : Collections.emptyList()
             ))
             .collect(Collectors.toList());
     }
@@ -172,60 +147,70 @@ public class ProcessoService {
             return new ListaTudoProcessoDTO(
                 processo.getId(),
                 processo.getNumeroProcesso(),
-                processo.getDescricao(),
+                processo.getVara(),
+                processo.getClasseTipo(),
+                processo.getAssuntosTitulo(),
                 processo.getStatus(),
-                processo.getTipo(),
-                processo.getDataInicio(),
+                processo.getAutor(),
                 processo.getAdvogadoAutor() != null ? new ListaAdvogadoDTO(
                     processo.getAdvogadoAutor().getId(),
                     processo.getAdvogadoAutor().getNome(),
                     processo.getAdvogadoAutor().getRegistroOAB()
                 ) : null,
+                processo.getReu(),
                 processo.getAdvogadoReu() != null ? new ListaAdvogadoDTO(
                     processo.getAdvogadoReu().getId(),
                     processo.getAdvogadoReu().getNome(),
                     processo.getAdvogadoReu().getRegistroOAB()
                 ) : null,
-                processo.getClienteAutor() != null ? new ListaClienteDTO(
-                    processo.getClienteAutor().getId(),
-                    processo.getClienteAutor().getNome(),
-                    processo.getClienteAutor().getTelefone(),
-                    processo.getClienteAutor().getParte(),
-                    processo.getClienteAutor().getCpf(),
-                    processo.getClienteAutor().getEndereco()
-                ) : null,
-                processo.getClienteReu() != null ? new ListaClienteDTO(
-                    processo.getClienteReu().getId(),
-                    processo.getClienteReu().getNome(),
-                    processo.getClienteReu().getTelefone(),
-                    processo.getClienteReu().getParte(),
-                    processo.getClienteReu().getCpf(),
-                    processo.getClienteReu().getEndereco()
-                ) : null,
-                processo.getAudiencias() != null ? processo.getAudiencias().stream()
-                    .map(audiencia -> new ListaAudienciaDTO(
-                        audiencia.getId(),
-                        audiencia.getDataHora(),
-                        audiencia.getLocal()
+                // Mapear anexos se necessário
+                processo.getAnexoDocumentos() != null ? processo.getAnexoDocumentos().stream()
+                    .map(anexo -> new ListaAnexoDTO(
+                        anexo.getId(),
+                        anexo.getNome(),
+                        anexo.getCaminho()
                     ))
-                    .collect(Collectors.toList()) : Collections.emptyList(), // Retorna lista vazia se nula
-                processo.getRegistrosDeInfo() != null ? processo.getRegistrosDeInfo().stream()
-                    .map(registroDeInfo -> new ExibirRegistroDeInfoDTO(
-                        registroDeInfo.getData(),
-                        registroDeInfo.getDescricao(),
-                        registroDeInfo.getDocumentos() != null ? registroDeInfo.getDocumentos().stream()
-                            .map(documento -> new ListaDocumentoDTO(
-                                documento.getNomeDocumento(),
-                                documento.getAnexo()
-                            ))
-                            .collect(Collectors.toList()) : Collections.emptyList()
-                    ))
-                    .collect(Collectors.toList()) : Collections.emptyList() 
+                    .collect(Collectors.toList()) : Collections.emptyList()
             );
         }
         throw new ProcessoNotFoundException("Processo não encontrado");
     }
-    
+    public ListaTudoProcessoDTO buscarPorNumeroDeProcesso(String numeroProcesso) throws ProcessoNotFoundException {
+        Optional<Processo> opProcesso = processoRepository.findByNumeroProcesso(numeroProcesso);
+        
+        if (opProcesso.isPresent()) {
+            Processo processo = opProcesso.get();
+            return new ListaTudoProcessoDTO(
+                processo.getId(),
+                processo.getNumeroProcesso(),
+                processo.getVara(),
+                processo.getClasseTipo(),
+                processo.getAssuntosTitulo(),
+                processo.getStatus(),
+                processo.getAutor(),
+                processo.getAdvogadoAutor() != null ? new ListaAdvogadoDTO(
+                    processo.getAdvogadoAutor().getId(),
+                    processo.getAdvogadoAutor().getNome(),
+                    processo.getAdvogadoAutor().getRegistroOAB()
+                ) : null,
+                processo.getReu(),
+                processo.getAdvogadoReu() != null ? new ListaAdvogadoDTO(
+                    processo.getAdvogadoReu().getId(),
+                    processo.getAdvogadoReu().getNome(),
+                    processo.getAdvogadoReu().getRegistroOAB()
+                ) : null,
+                // Mapear anexos si es necesario
+                processo.getAnexoDocumentos() != null ? processo.getAnexoDocumentos().stream()
+                    .map(anexo -> new ListaAnexoDTO(
+                        anexo.getId(),
+                        anexo.getNome(),
+                        anexo.getCaminho()
+                    ))
+                    .collect(Collectors.toList()) : Collections.emptyList()
+            );
+        }
+        throw new ProcessoNotFoundException("Processo com número " + numeroProcesso + " não encontrado");
+    }
     public void deletarProcesso(Long id) throws ProcessoNotFoundException {
         Optional<Processo> opProcesso = processoRepository.findById(id);
         if (opProcesso.isPresent()) {

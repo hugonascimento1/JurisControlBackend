@@ -33,43 +33,38 @@ public class Processo {
     private String numeroProcesso;
 
     @NonNull
-    private String descricao;
+    private String vara;
+
+    @NonNull
+    private String classeTipo;
+
+    @NonNull
+    private String assuntosTitulo;
 
     @NonNull
     private String status;
 
     @NonNull
-    private String tipo;
-
-    @NonNull
-    private LocalDateTime dataInicio;
-
-    @ManyToOne
-    @JoinColumn(name = "cliente_autor_id")
-    private Cliente clienteAutor;
-
-    @ManyToOne
-    @JoinColumn(name = "cliente_reu_id")
-    private Cliente clienteReu;
+    private String autor;
 
     @ManyToOne
     @JoinColumn(name = "advogado_autor_id")
     private Advogado advogadoAutor;
 
+    @NonNull
+    private String reu;
+
     @ManyToOne
     @JoinColumn(name = "advogado_reu_id")
     private Advogado advogadoReu;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "processo")
-    private List<Audiencia> audiencias;
+    @NonNull
+    @ManyToOne
+    @JoinColumn(name = "movimentos_id")
+    private List<Movimentos> movimentos;
 
     @JsonIgnore
     @OneToMany(mappedBy = "processo")
-    private List<RegistroDeInfo> registrosDeInfo;
-
-    // @JsonIgnore
-    // @OneToMany(mappedBy = "processo")
-    // private List<Documento> documentos;
+    private List<Anexo> anexoDocumentos;
 
 }

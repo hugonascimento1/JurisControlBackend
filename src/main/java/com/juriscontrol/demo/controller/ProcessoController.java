@@ -13,7 +13,6 @@ import com.juriscontrol.demo.dto.ProcessoDTO.CriarProcessoDTO;
 // import com.juriscontrol.demo.dto.ProcessoDTO.ListaProcessoDTO;
 import com.juriscontrol.demo.dto.ProcessoDTO.ListaTudoProcessoDTO;
 import com.juriscontrol.demo.exception.AdvogadoNotFoundException;
-import com.juriscontrol.demo.exception.ClienteNotFoundException;
 import com.juriscontrol.demo.exception.ProcessoNotFoundException;
 import com.juriscontrol.demo.model.Processo;
 import com.juriscontrol.demo.service.ProcessoService;
@@ -23,8 +22,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
-
 
 @RestController
 @RequestMapping("/processos")
@@ -40,11 +37,8 @@ public class ProcessoController {
             return new ResponseEntity<>(processoCriado, HttpStatus.CREATED);
         } catch (AdvogadoNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } catch (ClienteNotFoundException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    
     @PutMapping("/{id}")
     public ResponseEntity<Processo> atualizarProcesso(@PathVariable Long id, @RequestBody AtualizarProcessoDTO dto) {
         try {
@@ -54,7 +48,15 @@ public class ProcessoController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
+    @GetMapping("/{}")
+    public ResponseEntity<ListaTudoProcessoDTO> buscarPorNumeroDeProcesso(@PathVariable String numeroProcesso) {
+        try{
+            ListaTudoProcessoDTO processo = processoService.buscarPorNumeroDeProcesso(numeroProcesso);
+            return ResponseEntity.ok(processo);
+        } catch (ProcessoNotFoundException e){
+            return ResponseEntity.notFound().build();
+        }
+    }
     @GetMapping("/all")
     public ResponseEntity<List<ListaTudoProcessoDTO>> listarTodosProcessos() {
         List<ListaTudoProcessoDTO> processos = processoService.listarTodosProcessos();

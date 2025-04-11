@@ -12,6 +12,8 @@ import lombok.Setter;
 public class ProcessoResumoDTO {
     
     private String numeroProcesso;
-    private String descricao;
+    private String status;
+    private String vara;
+    private String assuntosTitulo;
 
 }

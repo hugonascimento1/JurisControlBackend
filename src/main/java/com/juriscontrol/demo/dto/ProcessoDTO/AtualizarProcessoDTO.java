@@ -10,11 +10,21 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AtualizarProcessoDTO {
-    
-    private String descricao;
+
+    private String vara;
+    private String classeTipo;
+    private String assuntosTitulo;
     private String status;
     private String tipo;
     private Long advogadoAutorId;
-    private Long adovgadoReuId;
+    private Long advogadoReuId;
 
+
+    // getNumeroProcesso());
+    //         processo.setVara(dto.getVara());
+    //         processo.setClasseTipo(dto.getClasseTipo());
+    //         processo.setAssuntosTitulo(dto.getAssuntosTitulo());
+    //         processo.setStatus(dto.getStatus());
+    //         processo.setAutor(dto.getAutor());
+    //         processo.setReu(dto.getReu());
 }
