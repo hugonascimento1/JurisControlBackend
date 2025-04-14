@@ -2,14 +2,10 @@ package com.juriscontrol.demo.model;
 
 import java.time.LocalDateTime;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,23 +17,21 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Audiencia {
+public class AgendaTarefa {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NonNull
-    private LocalDateTime dataHora;
+    private String titulo;
 
     @NonNull
-    private String local;
+    private String descricao;
 
     @NonNull
-    private String resultado;
+    private LocalDateTime dataInicio;
 
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "processo_id")
-    private Processo processo;
+    @NonNull
+    private LocalDateTime dataFinal;
 }
