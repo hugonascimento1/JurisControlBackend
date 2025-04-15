@@ -1,6 +1,5 @@
 package com.juriscontrol.demo.model;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -44,27 +43,29 @@ public class Processo {
     @NonNull
     private String status;
 
-    @NonNull
-    private String autor;
+    
+    private String nomeAutor;
 
-    @ManyToOne
-    @JoinColumn(name = "advogado_autor_id")
-    private Advogado advogadoAutor;
+    
+    private String advogadoAutor;
 
-    @NonNull
-    private String reu;
+    
+    private String nomeReu;
 
-    @ManyToOne
-    @JoinColumn(name = "advogado_reu_id")
-    private Advogado advogadoReu;
+    
+    private String advogadoReu;
 
     @NonNull
     @ManyToOne
     @JoinColumn(name = "movimentos_id")
-    private List<Movimentos> movimentos;
+    private List<Movimento> movimentos;
 
     @JsonIgnore
     @OneToMany(mappedBy = "processo")
     private List<Anexo> anexoDocumentos;
+
+    @ManyToOne
+    @JoinColumn(name = "advogado_id")
+    private Advogado advogado;
 
 }

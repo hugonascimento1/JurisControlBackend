@@ -1,6 +1,6 @@
 package com.juriscontrol.demo.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+// import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,27 +20,20 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Documento {
+public class Anexo {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@NonNull
-	private String nomeDocumento;
+	private String nomeAnexo;
 
-	@NonNull
-	private String tipoDocumento;
-
-	@NonNull
-	private Long tamDocumento;
-	
 	@NonNull
 	@Lob
 	private byte[] anexo;
-	
-	@JsonIgnore
+
 	@ManyToOne
-	@JoinColumn(name = "registroDeInfo_id")
-	private RegistroDeInfo registroDeInfo;
+    @JoinColumn(name = "processo_id")
+    private Processo processo;
 }

@@ -1,8 +1,6 @@
 package com.juriscontrol.demo.dto.AdvogadoDTO;
 
-import java.util.List;
-
-import com.juriscontrol.demo.dto.ProcessoDTO.ProcessoResumoDTO;
+// import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,7 +17,5 @@ public class ListaTudoAdvogadoDTO {
     private String registroOAB;
     private String email;
     private String senha;
-    private List<ProcessoResumoDTO> processosComoAutor;
-    private List<ProcessoResumoDTO> processosComoReu;
     
 }

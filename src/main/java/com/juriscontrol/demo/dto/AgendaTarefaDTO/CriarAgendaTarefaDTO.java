@@ -2,7 +2,7 @@ package com.juriscontrol.demo.dto.AgendaTarefaDTO;
 
 import java.time.LocalDateTime;
 
-import com.juriscontrol.demo.model.AgendaTarefa;
+// import com.juriscontrol.demo.model.AgendaTarefa;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,17 +22,17 @@ public class CriarAgendaTarefaDTO {
     private String descricao;
     
     @NonNull
-    private LocalDateTime dataInicio;
+    private LocalDateTime data;
     
     @NonNull
-    private LocalDateTime dataFinal;
+    private Long advogadoId;
     
-    public AgendaTarefa toEntity() {
-        AgendaTarefa entity = new AgendaTarefa();
-        entity.setTitulo(this.titulo);
-        entity.setDescricao(this.descricao);
-        entity.setDataInicio(this.dataInicio);
-        entity.setDataFinal(this.dataFinal);
-        return entity;
-    }
+    // public AgendaTarefa toEntity() {
+    //     AgendaTarefa entity = new AgendaTarefa();
+    //     entity.setTitulo(this.titulo);
+    //     entity.setDescricao(this.descricao);
+    //     entity.setData(this.data); // Setando o campo 'data'
+    //     // A associação com o advogado será feita no serviço
+    //     return entity;
+    // }
 }

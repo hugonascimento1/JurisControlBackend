@@ -6,6 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,8 +32,10 @@ public class AgendaTarefa {
     private String descricao;
 
     @NonNull
-    private LocalDateTime dataInicio;
+    private LocalDateTime data;
 
-    @NonNull
-    private LocalDateTime dataFinal;
+    @ManyToOne
+    @JoinColumn(name = "advogado_id")
+    private Advogado advogado;
+
 }

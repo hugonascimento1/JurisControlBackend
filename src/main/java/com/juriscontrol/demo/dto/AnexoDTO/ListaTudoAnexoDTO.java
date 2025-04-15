@@ -1,6 +1,4 @@
-package com.juriscontrol.demo.dto.RegistroDeInfoDTO;
-
-import java.time.LocalDate;
+package com.juriscontrol.demo.dto.AnexoDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,10 +9,10 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class CriarRegistroDeInfoDTO {
-    
-    private Long processoId;
-    private LocalDate data;
-    private String descricao;
+public class ListaTudoAnexoDTO {
 
+    private Long id;
+    private String nomeAnexo;
+    private byte[] anexo;
+    private Long processoId;
 }

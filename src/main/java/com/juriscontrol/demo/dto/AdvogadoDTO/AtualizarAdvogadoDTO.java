@@ -11,6 +11,7 @@ import lombok.Setter;
 @Setter
 public class AtualizarAdvogadoDTO {
 
+    private Long id;
     private String nome;
     private String registroOAB;
     private String email;

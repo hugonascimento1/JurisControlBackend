@@ -1,5 +1,10 @@
 package com.juriscontrol.demo.dto.ProcessoDTO;
 
+import java.util.List;
+
+import com.juriscontrol.demo.model.Anexo;
+import com.juriscontrol.demo.model.Movimento;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,13 +16,17 @@ import lombok.Setter;
 @Setter
 public class CriarProcessoDTO {
 
+    private Long id;
     private String numeroProcesso;
-    private String status;
-    private String classeTipo;
     private String vara;
+    private String classeTipo;
     private String assuntosTitulo;
-    private Long advogadoAutorId;
-    private Long advogadoReuId;
-    private String autor;
-    private String reu;
+    private String status;
+    private String nomeAutor;
+    private String advogadoAutor;
+    private String nomeReu;
+    private String advogadoReu;
+    private List<Movimento> movimentos;
+    private List<Anexo> anexoDocumentos;
+    private Long advogadoId;
 }

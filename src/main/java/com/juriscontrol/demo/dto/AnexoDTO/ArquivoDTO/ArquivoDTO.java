@@ -1,4 +1,4 @@
-package com.juriscontrol.demo.dto.DocumentoDTO.ArquivoDTO;
+package com.juriscontrol.demo.dto.AnexoDTO.ArquivoDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.juriscontrol.demo.dto.DocumentoDTO;
+package com.juriscontrol.demo.dto.AnexoDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,8 +9,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class ListaDocumentoDTO {
+public class ListaAnexoDTO {
     
-    private String nomeDocumento;
+    private String nomeAnexo;
     private byte[] anexo;
 }

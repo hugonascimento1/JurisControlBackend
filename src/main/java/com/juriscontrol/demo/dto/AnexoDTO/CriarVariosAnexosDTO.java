@@ -1,4 +1,4 @@
-package com.juriscontrol.demo.dto.DocumentoDTO;
+package com.juriscontrol.demo.dto.AnexoDTO;
 
 import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
@@ -12,11 +12,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class CriarVariosDocumentoDTO {
-    
-    private String nomeDocumento;
-    private String tipoDocumento;
-    private Long tamDocumento;
+public class CriarVariosAnexosDTO {
+
+    private String nomeAnexoBase; 
     private List<MultipartFile> anexos;
-    private Long registroId;
+    private Long processoId;
+
+   
 }

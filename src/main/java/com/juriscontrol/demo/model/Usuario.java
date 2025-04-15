@@ -1,26 +1,21 @@
 package com.juriscontrol.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.Setter;
+import com.juriscontrol.demo.model.enums.TipoUsuario;
 
-@AllArgsConstructor
-@NoArgsConstructor
+import jakarta.persistence.*;
+import lombok.*;
+
+@Entity
 @Getter
 @Setter
-@Entity
-public abstract class Usuario {
- 
+@NoArgsConstructor
+@AllArgsConstructor
+public class Usuario {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @NonNull
     private String nome;
 
@@ -29,4 +24,7 @@ public abstract class Usuario {
 
     @NonNull
     private String senha;
+
+    @Enumerated(EnumType.STRING)
+    private TipoUsuario tipo;
 }

@@ -1,9 +1,6 @@
 package com.juriscontrol.demo.model;
 
-import java.time.LocalDate;
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,7 +8,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,23 +19,21 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class RegistroDeInfo {
+public class Movimento {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NonNull
-    private LocalDate data;
+    private String nomeMovimento;
 
     @NonNull
-    private String descricao;
+    private String tipo;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "registroDeInfo")
-    private List<Documento> documentos;
+    @NonNull
+    private LocalDateTime data;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "processo_id")
     private Processo processo;

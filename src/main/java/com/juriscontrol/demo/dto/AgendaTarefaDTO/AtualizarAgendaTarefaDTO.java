@@ -2,7 +2,7 @@ package com.juriscontrol.demo.dto.AgendaTarefaDTO;
 
 import java.time.LocalDateTime;
 
-import com.juriscontrol.demo.model.AgendaTarefa;
+// import com.juriscontrol.demo.model.AgendaTarefa;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,15 +22,16 @@ public class AtualizarAgendaTarefaDTO {
     private String descricao;
     
     @NonNull
-    private LocalDateTime dataInicio;
+    private LocalDateTime data;
     
     @NonNull
-    private LocalDateTime dataFinal;
+    private Long advogadoId;
 
-    public void updateEntity(AgendaTarefa entity) {
-        entity.setTitulo(this.titulo);
-        entity.setDescricao(this.descricao);
-        entity.setDataInicio(this.dataInicio);
-        entity.setDataFinal(this.dataFinal);
-    }
+//     public void updateEntity(AgendaTarefa entity) {
+//         entity.setTitulo(this.titulo);
+//         entity.setDescricao(this.descricao);
+//         entity.setData(this.data); // Atualizando o campo 'data'
+//         // O ID do advogado não deve ser atualizado diretamente aqui,
+//         // pois a associação geralmente é gerenciada em outro contexto
+//     }
 }
